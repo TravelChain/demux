@@ -5,14 +5,9 @@ import likePost from './likepost'
 import createApprove from './approve'
 
 const account = process.env.EOSIO_CONTRACT_ACCOUNT
-
 export default [
   {
-    actionType: `${account}::approve`, // account::action name
-    updater: createApprove
-  },
-  {
-    actionType: `${account}::publish`,
+    actionType: `${account}::post`, // account::action name
     updater: createPost
   },
   {
@@ -20,7 +15,7 @@ export default [
     updater: editPost
   },
   {
-    actionType: `${account}::transfer`,
-    updater: likePost
+    actionType: `${account}::del`,
+    updater: deletePost
   }
 ]

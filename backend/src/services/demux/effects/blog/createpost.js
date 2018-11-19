@@ -1,15 +1,17 @@
+import mongoose from 'mongoose'
+
 function createPost (state, payload, blockInfo, context) {
   console.log(payload)
+  
   const post = {
-    _id: {
-          owner: payload.data.owner,
-          data_id: payload.data.data_id
-    },
-    owner: payload.data.owner,
-    data_id: payload.data.data_id,
-    datastr: payload.data.datastr,
-    type_id: payload.data.type_id,
-    group_id: payload.data.group_id,
+    host: payload.data.host,
+    goal_id: payload.data.goal_id,
+    author: payload.data.author,
+    permlink: payload.data.permlink,
+
+    body: payload.data.body,
+    title: payload.data.title,
+    meta: payload.data.meta,
   }
   context.socket.emit('createpost', post)
 }
