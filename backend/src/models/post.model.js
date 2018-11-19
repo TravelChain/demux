@@ -7,21 +7,14 @@ let Post = null
 try {
   const PostSchema = new Schema({
     _id: {
-      timestamp: Number,
-      author: String
+      owner: String,
+      data_id: Number
     },
-    author: String,
-    title: String,
-    content: String,
-    tag: String,
-    likes: {
-      type: Number,
-      default: 0
-    },
-    postConfirmed: {
-      type: Boolean,
-      default: false
-    }
+    owner: String,
+    data_id: Number,
+    datastr: String,
+    type_id: String,
+    group_id: Number
   })
   Post = mongoose.model('Post', PostSchema)
 } catch (e) {

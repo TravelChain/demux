@@ -1,11 +1,13 @@
 async function createPost (state, payload, blockInfo, context) {
+  console.log(payload)
+
   const Post = state.post
   try {
     let post = await Post.find(
       {
         _id: {
-          timestamp: payload.data.timestamp,
-          author: payload.data.author
+          owner: payload.data.owner,
+          data_id: payload.data.data_id
         }
       }
     ).exec()
@@ -16,14 +18,14 @@ async function createPost (state, payload, blockInfo, context) {
     post = new Post(
       {
         _id: {
-          timestamp: payload.data.timestamp,
-          author: payload.data.author
+          owner: payload.data.owner,
+          data_id: payload.data.data_id
         },
-        author: payload.data.author,
-        title: payload.data.title,
-        content: payload.data.content,
-        tag: payload.data.tag,
-        postConfirmed: true
+          owner: payload.data.owner,
+          data_id: payload.data.data_id,
+          datastr: payload.data.datastr,
+          type_id: payload.data.type_id,
+          group_id: payload.data.group_id,
       }
     )
     await post.save()

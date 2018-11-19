@@ -1,6 +1,7 @@
 async function editPost (state, payload, blockInfo, context) {
   try {
-    await state.post.findByIdAndUpdate({ timestamp: payload.data.timestamp, author: payload.data.author }, payload.data).exec()
+  	console.log(payload)
+    await state.post.findByIdAndUpdate({ owner: payload.data.owner, data_id: payload.data.data_id }, payload.data).exec()
   } catch (err) {
     console.error(err)
   }

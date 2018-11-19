@@ -1,4 +1,4 @@
-import { Post } from '../../models'
+import { Approve } from '../../models'
 
 /**
  * Get list of all posts confirmed by the blockchain
@@ -7,17 +7,17 @@ import { Post } from '../../models'
 export const listConfirmed = async (req, res) => {
   try {
   	
-    const confirmedPosts = await Post.find({ owner: req.params.owner, data_id: req.params.data_id }).exec()
+    const confirmedPosts = await Approve.find({ owner: req.params.owner, buyer: req.params.buyer, data_id: req.params.data_id }).exec()
     res.send(confirmedPosts)
   } catch (err) {
     console.error(err)
   }
 }
 
-export const byowner = async (req, res) => {
+export const bybuyer = async (req, res) => {
   try {
-  	console.log(req.params)
-    const confirmedPosts = await Post.find({ owner: req.params.owner }).exec()
+  	
+    const confirmedPosts = await Approve.find({ buyer: req.params.buyer }).exec()
     res.send(confirmedPosts)
   } catch (err) {
     console.error(err)
