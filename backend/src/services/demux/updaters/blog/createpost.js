@@ -13,9 +13,6 @@ async function createPost (state, payload, blockInfo, context) {
 
     // if post already exists do not insert it in again
     if (post.length !== 0) return
-
-
-      var utc = new Date().toJSON().slice(0,19).replace(/-/g,'/');
       
     post = new Post(
       {
@@ -23,7 +20,9 @@ async function createPost (state, payload, blockInfo, context) {
           host: payload.data.host,
           goal_id: payload.data.goal_id,
           author: payload.data.author,
+          parent_author: payload.data.parent_author,
           permlink: payload.data.permlink,
+          parent_permlink: payload.data.parent_permlink,
           created: Date.now(),
           last_update: Date.now(),
           body: payload.data.body,

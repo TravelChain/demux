@@ -13,6 +13,7 @@ try {
       goal_id: Number,
       author: String,
       permlink: String,
+      parent_permlink: String,
       body: String,
       title: String,
       meta: String
