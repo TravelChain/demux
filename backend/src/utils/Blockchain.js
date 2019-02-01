@@ -1,6 +1,6 @@
 // const Eos = require('eosjs')
 const EosApi = require('eosjs-api')
-const ecc = require('eosjs-ecc')
+// const ecc = require('eosjs-ecc')
 
 var scatter_options = { expireInSeconds:60 };
 
