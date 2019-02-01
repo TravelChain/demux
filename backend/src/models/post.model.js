@@ -6,12 +6,15 @@ let Post = null
 
 try {
   const PostSchema = new Schema({
-    _id: String,
+    _id: mongoose.Schema.Types.ObjectId,
+      ownid: String,
       host: String,
+      is_goal: Boolean,
       created: Date,
       last_update: Date,
       goal_id: Number,
       author: String,
+      parent_author: String,
       permlink: String,
       parent_permlink: String,
       body: String,

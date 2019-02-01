@@ -1,33 +1,47 @@
 import mongoose from 'mongoose'
+import Blockchain from '../../../../utils/Blockchain.js'
 
+async function get_post(author, permlink){
+
+
+}
 
 async function createPost (state, payload, blockInfo, context) {
-  console.log(payload)
+  
+  var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
   const Post = state.post
   try {
+    
     var id = new mongoose.mongo.ObjectId();
   
     let post = await Post.find(
-        {_id: id}
+        {permlink: payload.data.permlink}
     ).exec()
 
     // if post already exists do not insert it in again
     if (post.length !== 0) return
-      
+    
+    if (postObj.is_goal == 0){
+      postObj.goal_id = 0;
+      postObj.host = "";
+    }
+
     post = new Post(
       {
         _id: id,
-          host: payload.data.host,
-          goal_id: payload.data.goal_id,
-          author: payload.data.author,
-          parent_author: payload.data.parent_author,
-          permlink: payload.data.permlink,
-          parent_permlink: payload.data.parent_permlink,
-          created: Date.now(),
-          last_update: Date.now(),
-          body: payload.data.body,
-          title: payload.data.title,
-          meta: payload.data.meta,
+          ownid: postObj.id,
+          host: postObj.host,
+          is_goal: postObj.is_goal,
+          goal_id: postObj.goal_id,
+          author: postObj.author,
+          parent_author: postObj.parent_author,
+          permlink: postObj.permlink,
+          parent_permlink: postObj.parent_permlink,
+          body: postObj.body,
+          title: postObj.title,
+          meta: postObj.meta,
+          created: postObj.created,
+          last_update: postObj.last_update
       }
     )
     await post.save()

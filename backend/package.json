@@ -9,6 +9,7 @@
     "lint": "standard | snazzy"
   },
   "dependencies": {
+    "eosjs-api": "7.0.4",
     "cors": "^2.8.4",
     "demux": "^2.0.0",
     "demux-eos": "^2.0.0",
@@ -19,6 +20,7 @@
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
+    "eosjs-api": "7.0.4",
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/node": "^7.0.0",

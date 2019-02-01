@@ -1,4 +1,4 @@
-import { Post } from '../../models'
+import { Post, Market, User } from '../../models'
 
 /**
  * Get list of all posts confirmed by the blockchain
