@@ -1,4 +1,4 @@
-const Eos = require('eosjs')
+// const Eos = require('eosjs')
 const EosApi = require('eosjs-api')
 const ecc = require('eosjs-ecc')
 
