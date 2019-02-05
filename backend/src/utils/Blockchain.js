@@ -213,7 +213,7 @@ export class Blockchain {
 					} else {
 						let minutes_before_5m = mar_5m.date.getMinutes()
 			            let abs_m_5m = Math.abs(minutes_now - minutes_before_5m)
-		        	    console.log("abs_m_5m: ", abs_m_5m);
+		        	    //console.log("abs_m_5m: ", abs_m_5m);
 			     	
 						var is5min = abs_m_5m >= 5
 					}
@@ -222,7 +222,7 @@ export class Blockchain {
 					} else {
 						let minutes_before_15m = mar_15m.date.getMinutes()
 			        	let abs_m_15m = Math.abs(minutes_now - minutes_before_15m)
-		        	    console.log("abs_m_15m: ", abs_m_15m);
+		        	    // console.log("abs_m_15m: ", abs_m_15m);
 			     
 						var is15min = abs_m_15m >= 15
 					}
@@ -231,7 +231,7 @@ export class Blockchain {
 					} else {
 						let minutes_before_30m = mar_30m.date.getMinutes()
 			        	let abs_m_30m = Math.abs(minutes_now - minutes_before_30m)
-			        	console.log("abs_m_30m: ", abs_m_30m);
+			        	// console.log("abs_m_30m: ", abs_m_30m);
 			     
 						var is30min = abs_m_30m >= 30
 					}
@@ -240,7 +240,7 @@ export class Blockchain {
 					} else {
 						let hours_before_1h = mar_60m.date.getHours()
 			        	let abs_m_60m = Math.abs(hours_now - hours_before_1h)
-			        	console.log("abs_m_60m: ", abs_m_60m);
+			        	//console.log("abs_m_60m: ", abs_m_60m);
 			     
 						var is60min = abs_m_60m >= 1
 					}
@@ -250,7 +250,7 @@ export class Blockchain {
 					} else {
 						let hours_before_4h = mar_4h.date.getHours()
 			        	let abs_m_4h = Math.abs(hours_now - hours_before_4h)
-						console.log("abs_m_4h: ", abs_m_4h);
+						//console.log("abs_m_4h: ", abs_m_4h);
 			     
 						var is4hour = abs_m_4h >= 4
 					}
@@ -259,7 +259,7 @@ export class Blockchain {
 					} else {
 						let days_before_1d = mar_1d.date.getDay()
 			        	let abs_m_1d = Math.abs(days_now - days_before_1d)
-			        	console.log("abs_m_1d: ", abs_m_1d);
+			        	//console.log("abs_m_1d: ", abs_m_1d);
 			     
 						is1day = abs_m_1d >= 1
 					}
@@ -268,8 +268,8 @@ export class Blockchain {
 					} else {
 						let days_before_1w = mar_1w.date.getDay()
 			        	let abs_m_1w = Math.abs(days_now - days_before_1w)
-			        	console.log("abs_m_1w: ", abs_m_1w);
-			     		console.log("_________________");
+			        	//console.log("abs_m_1w: ", abs_m_1w);
+			     		//console.log("_________________");
 						var is1week = abs_m_1w >= 6
 					}
 					
@@ -312,6 +312,9 @@ export class Blockchain {
 
 	static async get_post(author, permlink){
 		try{
+		  console.log(author)
+		  console.log(permlink)
+
 	      var api = await Blockchain.get_api_instance()
 		  var postObj = ""
 		  var more = true
@@ -321,6 +324,7 @@ export class Blockchain {
 		      then(data=>{
 		        more = data.more
 		        i+= 100
+		        console.log(data)
 		        data.rows.map(element => {
 		          if (permlink == element.permlink)
 		            {
@@ -328,7 +332,7 @@ export class Blockchain {
 		            }
 		        });
 		    })
-		      console.log(postObj)
+		      console.log("PostObj from get-post", postObj)
 		      return postObj
 		  }
 		} catch (e){

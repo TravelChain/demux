@@ -19,7 +19,8 @@ try {
       parent_permlink: String,
       body: String,
       title: String,
-      meta: String
+      meta: String,
+      deleted: Boolean,
   })
   Post = mongoose.model('Post', PostSchema)
 } catch (e) {
