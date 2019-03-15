@@ -21,11 +21,11 @@ const actionWatcher = new BaseActionWatcher(
   250 // Poll at twice the block interval for less latency
 )
 
-// async function fetch_markets() {
-//   Blockchain.get_markets()
-//   Blockchain.get_ram_market()
-// }
+async function fetch_markets() {
+  Blockchain.get_markets()
+  Blockchain.get_ram_market()
+}
 
-// setInterval(fetch_markets, 60000);
+setInterval(fetch_markets, 60000);
 
 export default actionWatcher
