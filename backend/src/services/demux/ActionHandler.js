@@ -1,6 +1,6 @@
 import { AbstractActionHandler } from 'demux'
 import mongoose from 'mongoose'
-import { Post, BlockIndexState, Approve, Market, User } from '../../models'
+import { Post, BlockIndexState, Approve, Market, User, Balance, Host } from '../../models'
 import io from '../../utils/io'
 
 class ActionHandler extends AbstractActionHandler {
@@ -33,7 +33,7 @@ class ActionHandler extends AbstractActionHandler {
 
   async handleWithState (handle) {
     const context = { socket: io.getSocket() }
-    const state = { user:User, post: Post, approve: Approve , blockIndexState: BlockIndexState }
+    const state = { user:User, post: Post, approve: Approve , blockIndexState: BlockIndexState, balance: Balance, host: Host }
     try {
       await handle(state, context)
     } catch (err) {

@@ -312,9 +312,7 @@ export class Blockchain {
 
 	static async get_post(author, permlink){
 		try{
-		  console.log(author)
-		  console.log(permlink)
-
+		  
 	      var api = await Blockchain.get_api_instance()
 		  var postObj = ""
 		  var more = true
@@ -324,7 +322,6 @@ export class Blockchain {
 		      then(data=>{
 		        more = data.more
 		        i+= 100
-		        console.log(data)
 		        data.rows.map(element => {
 		          if (permlink == element.permlink)
 		            {
@@ -340,6 +337,64 @@ export class Blockchain {
 		}
 	}
 
+
+	static async get_balance(owner, id){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var BalanceObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, owner, 'balance', 'id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        // console.log(data)
+		        data.rows.map(element => {
+		          if (id == element.id)
+		            {
+		              BalanceObj = element;
+		            }
+		        });
+		    })
+		      // console.log("BalanceObj from get-balance", BalanceObj)
+		      return BalanceObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+static async get_host(hostname){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var BalanceObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, process.env.EOSIO_CORE_ACCOUNT, 'hosts', 'username', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        // console.log(data)
+		        data.rows.map(element => {
+		          if (hostname == element.username)
+		            {
+		              BalanceObj = element;
+		            }
+		        });
+		    })
+		      // console.log("BalanceObj from get-balance", BalanceObj)
+		      return BalanceObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
 
 	static async get_api_instance(){		
 		return eosapi;

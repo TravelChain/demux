@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 
 async function regUser (state, payload, blockInfo, context) {
   
-  //var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
+  // var BalanceObj = await Blockchain.get_balance(payload.data.author, payload.data.permlink)
   console.log(payload.data)
   const User = state.user
 
