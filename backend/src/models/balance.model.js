@@ -10,11 +10,9 @@ try {
       username: String,
       ownid: Number,
       host: String,
-      children_host: String,
-      cycle_num: Date,
-      pool_num: Date,
-      is_goal: Number,
-      goal_id: String,
+      chost: String,
+      cycle_num: Number,
+      pool_num: Number,
       global_pool_id: String,
       quants_for_sale: String,
       next_quants_for_sale: String,
@@ -23,16 +21,11 @@ try {
       pool_color: String,
       available: String,
       purchase_amount: String,
-      date_of_purchase: String,
-      ref_amount: String,
-      sys_amount: String,
-      sold_amount: String,
-      date_of_sale: String,
       forecasts: Array,
       ref_amount: String,
       sys_amount: String,
       withdrawed: Boolean,
-
+      meta: String
   })
   Balance = mongoose.model('Balance', BalanceSchema)
 } catch (e) {

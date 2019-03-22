@@ -45,11 +45,9 @@ async function refresh (state, payload, blockInfo, context) {
             ownid: BalanceObj.id,
             username: payload.data.username,
             host: BalanceObj.host,
-            children_host: BalanceObj.children_host,
+            chost: BalanceObj.chost,
             cycle_num: BalanceObj.cycle_num,
             pool_num: BalanceObj.pool_num,
-            is_goal: BalanceObj.is_goal,
-            goal_id: BalanceObj.goal_id,
             global_pool_id: BalanceObj.global_pool_id,
             quants_for_sale: BalanceObj.quants_for_sale,
             next_quants_for_sale: BalanceObj.next_quants_for_sale,
@@ -58,13 +56,12 @@ async function refresh (state, payload, blockInfo, context) {
             pool_color: BalanceObj.pool_color,
             available: BalanceObj.available,
             purchase_amount: BalanceObj.purchase_amount,
-            date_of_purchase: BalanceObj.date_of_purchase,
             withdrawed: BalanceObj.withdrawed,
-            sold_amount: BalanceObj.sold_amount,
-            date_of_sale: BalanceObj.date_of_sale,
             forecasts: BalanceObj.forecasts,
             ref_amount: BalanceObj.ref_amount,
-            sys_amount: BalanceObj.sys_amount
+            sys_amount: BalanceObj.sys_amount,
+            meta: BalanceObj.meta
+
         }
       )
       await balance.save()
