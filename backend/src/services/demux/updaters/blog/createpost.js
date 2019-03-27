@@ -8,12 +8,15 @@ async function createPost (state, payload, blockInfo, context) {
   console.log("postobj", postObj)
   const Post = state.post
   try {
+    var blockchain = process.env.BC
     
     var id = new mongoose.mongo.ObjectId();
   
     let post = await Post.find(
         {permlink: payload.data.permlink,
-          author: payload.data.author}
+          author: payload.data.author,
+          blockchain: blockchain
+        }
     ).exec()
 
     // if post already exists do not insert it in again
@@ -27,6 +30,7 @@ async function createPost (state, payload, blockInfo, context) {
     post = new Post(
       {
         _id: id,
+          blockchain: blockchain,
           ownid: postObj.id,
           host: postObj.host,
           is_goal: postObj.is_goal,

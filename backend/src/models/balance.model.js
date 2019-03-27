@@ -7,6 +7,7 @@ let Balance = null
 try {
   const BalanceSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+      blockchain: String,
       username: String,
       ownid: Number,
       host: String,

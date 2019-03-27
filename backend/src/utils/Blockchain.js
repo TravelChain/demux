@@ -33,6 +33,8 @@ import { Market } from '../models'
 export class Blockchain {
 
 	static async get_markets(){
+		var blockchain = process.env.BC
+
 		var mar_1m = await Market.findOne({is1min:true}).sort({date: -1}).exec();
 		
 		var mar_5m = await Market.findOne({is5min:true}).sort({date: -1}).exec();
@@ -141,11 +143,12 @@ export class Blockchain {
 					        var market = new Market(
 						      {
 						        _id: new mongoose.Types.ObjectId(),
+						          blockchain: blockchain,
 				                  host: element.username,
 							      date: date,
 							      base: basebal,
 							      quote: quotebal,
-							      basecurr: "CORE",
+							      basecurr: "POWER",
 							      quotecurr: element.symbol,
 							      cost: cost,
 							      is1min: true,

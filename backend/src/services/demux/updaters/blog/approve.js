@@ -1,6 +1,6 @@
 async function createApprove (state, payload, blockInfo, context) {
   console.log(payload)
-  
+  var blockchain = process.env.BC
   const Approve = state.approve
   try {
     let approve = await Approve.find(
@@ -8,7 +8,8 @@ async function createApprove (state, payload, blockInfo, context) {
         _id: {
           owner: payload.data.owner,
           buyer: payload.data.buyer,
-          data_id: payload.data.data_id
+          data_id: payload.data.data_id,
+          blockchain: blockchain
         }
       }
     ).exec()
@@ -21,8 +22,9 @@ async function createApprove (state, payload, blockInfo, context) {
         _id: {
           owner: payload.data.owner,
           buyer: payload.data.buyer,
-          data_id: payload.data.data_id
+          data_id: payload.data.data_id,
         },
+        blockchain: blockchain,
         owner: payload.data.owner,
         buyer: payload.data.buyer,
         data_id: payload.data.data_id,

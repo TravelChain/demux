@@ -44,7 +44,7 @@ class ActionHandler extends AbstractActionHandler {
   async updateIndexState (state, block, isReplay) {
     const { blockInfo } = block
     try {
-      await state.blockIndexState.update({}, {
+      await state.blockIndexState.update({blockchain: process.env.BC}, {
         blockNumber: blockInfo.blockNumber,
         blockHash: blockInfo.blockHash,
         isReplay
@@ -58,7 +58,7 @@ class ActionHandler extends AbstractActionHandler {
     try {
       let blockHash
       let blockNumber
-      const indexState = await BlockIndexState.findOne({}).exec()
+      const indexState = await BlockIndexState.findOne({blockchain: process.env.BC}).exec()
       if (indexState) {
         ({ blockHash, blockNumber } = indexState)
       }

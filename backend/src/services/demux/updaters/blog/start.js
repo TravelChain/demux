@@ -4,7 +4,7 @@ import Blockchain from '../../../../utils/Blockchain.js'
 
 async function start (state, payload, blockInfo, context) {
   console.log("this is start", payload.data)
-  
+  var blockchain = process.env.BC
   var HostObj = await Blockchain.get_host(payload.data.host)
   console.log(HostObj)
   //var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
@@ -15,6 +15,7 @@ async function start (state, payload, blockInfo, context) {
   
     let host = await Host.findOne(
         {username: payload.data.host,
+          blockchain: blockchain
           }
     ).exec()
     console.log("FOUNDED OBJ,", host)
@@ -34,6 +35,7 @@ async function start (state, payload, blockInfo, context) {
         {
 
           _id: id,
+            blockchain: blockchain,
             username: HostObj.username,
             registered_at: HostObj.registered_at,
             architect: HostObj.architect,

@@ -4,7 +4,8 @@ import Blockchain from '../../../../utils/Blockchain.js'
 
 async function refresh (state, payload, blockInfo, context) {
   console.log(";     this is refresh", payload.data)
-  
+  var blockchain = process.env.BC
+
   var BalanceObj = await Blockchain.get_balance(payload.data.username, payload.data.balance_id)
   console.log(BalanceObj)
   //var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
@@ -16,7 +17,9 @@ async function refresh (state, payload, blockInfo, context) {
         { username: payload.data.username,
           host: BalanceObj.host,
           ownid: payload.data.balance_id,
-          withdrawed: false}
+          withdrawed: false, 
+          blockchain: blockchain
+        }
     ).exec()
     console.log("FOUNDED OBJ,", balance)
     // // if post already exists do not insert it in again
@@ -42,6 +45,7 @@ async function refresh (state, payload, blockInfo, context) {
       let balance = new Balance(
         {
           _id: id,
+            blockchain: blockchain,
             ownid: BalanceObj.id,
             username: payload.data.username,
             host: BalanceObj.host,

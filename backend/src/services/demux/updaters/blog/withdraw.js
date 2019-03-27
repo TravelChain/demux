@@ -7,6 +7,7 @@ async function withdraw (state, payload, blockInfo, context) {
   // var BalanceObj = await Blockchain.get_balance(payload.data.username, payload.data.balance_id)
   
   const Balance = state.balance
+  var blockchain = process.env.BC
 
   try {
     
@@ -15,7 +16,8 @@ async function withdraw (state, payload, blockInfo, context) {
           username: payload.data.username,
           host: payload.data.host,
           ownid: payload.data.balance_id,
-          withdrawed: false
+          withdrawed: false,
+          blockchain: blockchain
         }
     ).exec()
     console.log("FOUNDED OBJ on WITHDRAW,", balance)

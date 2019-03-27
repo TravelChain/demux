@@ -4,22 +4,23 @@ import mongoose from 'mongoose'
 async function transfer (state, payload, blockInfo, context) {
   
   //var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
-  console.log("This is TRANSFER", payload.data)
-  if (payload.data.to == process.env.EOSIO_CORE_ACCOUNT){
-    if (payload.data.memo == "100-alice.tc")
-    {
-      console.log("im here")
-      const Balance = state.balance
-      var id = new mongoose.mongo.ObjectId();
-      let balance = new Balance(
-        {
-          _id: id,
-          host: "alice.tc",
-        }
-      )
-      await balance.save()
-    }
-  }
+  // console.log("This is TRANSFER", payload.data)
+  // if (payload.data.to == process.env.EOSIO_CORE_ACCOUNT){
+  //   if (payload.data.memo == "100-alice.tc")
+  //   {
+  //     console.log("im here")
+  //     const Balance = state.balance
+  //     var id = new mongoose.mongo.ObjectId();
+  //     let balance = new Balance(
+  //       {
+  //         _id: id,
+          
+  //         host: "alice.tc",
+  //       }
+  //     )
+  //     await balance.save()
+  //   }
+  // }
   // const User = state.user
 
   // try {

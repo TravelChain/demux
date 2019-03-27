@@ -7,6 +7,7 @@ let Post = null
 try {
   const PostSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+      blockchain: String,
       ownid: String,
       host: String,
       is_goal: Boolean,

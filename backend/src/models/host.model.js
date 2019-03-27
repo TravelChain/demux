@@ -7,6 +7,7 @@ let Host = null
 try {
   const HostSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
+      blockchain: String,
       username: String,
       registered_at: Date,
       architect: String,

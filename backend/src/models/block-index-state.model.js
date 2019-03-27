@@ -6,6 +6,7 @@ let BlockIndexState = null
 
 try {
   const BlockIndexStateSchema = new Schema({
+  	blockchain: String,
     blockNumber: Number,
     blockHash: String,
     isReplay: Boolean

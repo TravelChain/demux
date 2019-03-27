@@ -7,6 +7,7 @@ let Market = null
 try {
   const MarketSchema = new Schema({
     _id: String,
+      blockchain: String,
       host: String,
       date: Date,
       base: Number,
