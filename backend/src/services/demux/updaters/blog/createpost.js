@@ -4,8 +4,9 @@ import Blockchain from '../../../../utils/Blockchain.js'
 
 async function createPost (state, payload, blockInfo, context) {
   console.log("payload", payload)
-  var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
-  console.log("postobj", postObj)
+  // var postObj = await Blockchain.get_post(payload.data.author, payload.data.permlink)
+  // console.log("postobj", postObj)
+  console.log("blockInfo", blockInfo)
   const Post = state.post
   try {
     var blockchain = process.env.BC
@@ -22,28 +23,29 @@ async function createPost (state, payload, blockInfo, context) {
     // if post already exists do not insert it in again
     if (post.length !== 0) return
     
-    if (postObj.is_goal == 0){
-      postObj.goal_id = 0;
-      postObj.host = "";
+    
+    try {
+      payload.data.json = JSON.parse(payload.data.meta);
+
+    } catch (e){
+      console.error(e)
+      payload.data.json = {}
     }
 
     post = new Post(
       {
         _id: id,
           blockchain: blockchain,
-          ownid: postObj.id,
-          host: postObj.host,
-          is_goal: postObj.is_goal,
-          goal_id: postObj.goal_id,
-          author: postObj.author,
-          parent_author: postObj.parent_author,
-          permlink: postObj.permlink,
-          parent_permlink: postObj.parent_permlink,
-          body: postObj.body,
-          title: postObj.title,
-          meta: postObj.meta,
-          created: postObj.created,
-          last_update: postObj.last_update
+          author: payload.data.author,
+          parent_author: payload.data.parent_author,
+          permlink: payload.data.permlink,
+          parent_permlink: payload.data.parent_permlink,
+          body: payload.data.body,
+          title: payload.data.title,
+          meta: payload.data.meta,
+          json: payload.data.json,
+          created: blockInfo.timestamp,
+          last_update: blockInfo.timestamp
       }
     )
     await post.save()

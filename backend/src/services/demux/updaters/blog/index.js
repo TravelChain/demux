@@ -9,6 +9,14 @@ import refresh from './refresh'
 import transfer from './transfer'
 import start from './start'
 import profupdate from './profupdate'
+import delshares from './delshares'
+import undelshares from './undelshares'
+import sellshares from './sellshares'
+import setbadge from './setbadge'
+import giftbadge from './giftbadge'
+import setreport from './setreport'
+import editreport from './editreport'
+import approver from './approver'
 
 const account = process.env.EOSIO_CONTRACT_ACCOUNT
 const core_account = process.env.EOSIO_CORE_ACCOUNT
@@ -45,8 +53,44 @@ export default [
     actionType: `${core_account}::profupdate`,
     updater: profupdate
   },
+  {
+    actionType: `eosio.token::transfer`,
+    updater: transfer
+  },
+  {
+    actionType: `${core_account}::sellshares`,
+    updater: sellshares
+  },
+  {
+    actionType: `${core_account}::delshares`,
+    updater: delshares
+  },
+  {
+    actionType: `${core_account}::undelshares`,
+    updater: undelshares
+  },
+  {
+    actionType: `${core_account}::setbadge`,
+    updater: setbadge
+  },
+  {
+    actionType: `${core_account}::giftbadge`,
+    updater: giftbadge
+  },
   // {
-  //   actionType: `eosio.token::transfer`,
-  //   updater: transfer
+  //   actionType: `${core_account}::setreport`,
+  //   updater: setreport
+  // },
+  // {
+  //   actionType: `${core_account}::editreport`,
+  //   updater: editreport
+  // },
+  // {
+  //   actionType: `${core_account}::approver`,
+  //   updater: approver
+  // },
+  // {
+  //   actionType: `${core_account}::disapprover`,
+  //   updater: approver
   // },
 ]

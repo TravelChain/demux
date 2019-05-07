@@ -10,7 +10,8 @@ try {
       blockchain: String,
       username: String,
       referer: String,
-      meta: String
+      meta: String,
+      power: String
       
   })
   User = mongoose.model('User', UserSchema)

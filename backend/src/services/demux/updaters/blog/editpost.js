@@ -1,6 +1,6 @@
 async function editPost (state, payload, blockInfo, context) {
   try {
-  	payload.data.last_update = Date.now()
+  	payload.data.last_update = blockInfo.timestamp
   	console.log(payload)
     var blockchain = process.env.BC
 

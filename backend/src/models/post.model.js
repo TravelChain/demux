@@ -8,12 +8,8 @@ try {
   const PostSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
       blockchain: String,
-      ownid: String,
-      host: String,
-      is_goal: Boolean,
       created: Date,
       last_update: Date,
-      goal_id: Number,
       author: String,
       parent_author: String,
       permlink: String,
@@ -21,6 +17,7 @@ try {
       body: String,
       title: String,
       meta: String,
+      json: Array,
       deleted: Boolean,
   })
   Post = mongoose.model('Post', PostSchema)

@@ -5,7 +5,9 @@ const User = state.user
   try {
     console.log("on profupdate", payload)
     let user = await User.findOne(
-        {username: payload.data.username}
+        {username: payload.data.username,
+          blockchain: process.env.BC
+        }
     ).exec()
     console.log(user)
     

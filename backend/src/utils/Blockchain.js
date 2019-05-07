@@ -55,7 +55,9 @@ export class Blockchain {
 			      then(data=>{
 			      	more = data.more
 			        i+= 100
+
 	    	        data.rows.map(element => {
+			  	        if (element.activated) {
 			  	        api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, element.username, 'powermarket', 'id', 0, -1, 100).
 					      then(market=>{
 					      	
@@ -166,6 +168,7 @@ export class Blockchain {
 					    }).catch(e =>{
 			  				console.log("err:", e)
 					    })   
+		        	}
 		        	});
 			 		   
 			    }).catch(e => {
@@ -370,6 +373,67 @@ export class Blockchain {
 		}
 	}
 
+	static async get_report(host, task_id, username){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var Obj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'reports', 'report_id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        // console.log(data)
+		        data.rows.map(element => {
+			  	if (username == element.username)
+		          if (task_id == element.task_id)
+
+		            {
+		              Obj = element;
+		            }
+		        });
+		    })
+		      // console.log("BalanceObj from get-balance", Obj)
+		      return Obj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+	static async get_report_by_id(host, report_id){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var Obj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'reports', 'report_id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        // console.log(data)
+		        data.rows.map(element => {
+		  	    if (report_id == element.report_id)
+
+		            {
+		              Obj = element;
+		            }
+		        });
+		    })
+		      // console.log("BalanceObj from get-balance", Obj)
+		      return Obj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
 static async get_host(hostname){
 		try{
 		  
@@ -393,6 +457,149 @@ static async get_host(hostname){
 		    })
 		      // console.log("BalanceObj from get-balance", BalanceObj)
 		      return BalanceObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+static async get_power(host, username){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var PowerObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, username, 'power', 'host', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        console.log(data)
+		        data.rows.map(element => {
+		          if (host == element.host)
+		            {
+		              PowerObj = element;
+		            }
+		        });
+		    })
+		      console.log("PowerObj from get-balance", PowerObj)
+		      return PowerObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+static async get_task(host, task_id){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var BadgeTypeObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'tasks', 'id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        console.log(data)
+		        data.rows.map(element => {
+		          if (task_id == element.task_id)
+		            {
+		              BadgeTypeObj = element;
+		            }
+		        });
+		    })
+		      console.log("PowerObj from get-balance", BadgeTypeObj)
+		      return BadgeTypeObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+
+static async get_badgetype(host, badge_type){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var BadgeTypeObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'badges', 'id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        console.log(data)
+		        data.rows.map(element => {
+		          if (badge_type == element.id)
+		            {
+		              BadgeTypeObj = element;
+		            }
+		        });
+		    })
+		      console.log("PowerObj from get-balance", BadgeTypeObj)
+		      return BadgeTypeObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+static async get_badge(username, badge_id){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var BadgeObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, username, 'usbadges', 'id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        console.log(data)
+		        data.rows.map(element => {
+		          if (badge_id == element.id)
+		            {
+		              BadgeObj = element;
+		            }
+		        });
+		    })
+		      console.log("PowerObj from get-balance", BadgeObj)
+		      return BadgeObj
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+static async get_all_user_badges(username){
+		try{
+		  console.log("USBADGES FOR:", username)
+	      var api = await Blockchain.get_api_instance()
+		  var BadgeObj = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, username, 'usbadges', 'id', i, -1, 1000).
+		      then(data=>{
+		      	BadgeObj = data.rows;
+
+		    })
+		      console.log("all user badges", BadgeObj)
+		      return BadgeObj
 		  }
 		} catch (e){
 			console.error("err:", e)
