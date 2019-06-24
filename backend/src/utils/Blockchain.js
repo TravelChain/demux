@@ -463,6 +463,36 @@ static async get_host(hostname){
 		}
 	}
 
+
+static async get_spiral(hostname, ahost){
+		try{
+		  
+	      var api = await Blockchain.get_api_instance()
+		  var Spiral = ""
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, hostname, 'spiral', 'id', i, -1, 1000).
+		      then(data=>{
+		        more = data.more
+		        i+= 100
+		        // console.log(data)
+	
+				if (data.rows[0])		        
+		        	Spiral = data.rows[0];
+
+
+		    })
+		      
+		      return Spiral
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
 static async get_power(host, username){
 		try{
 		  
@@ -605,6 +635,67 @@ static async get_all_user_badges(username){
 			console.error("err:", e)
 		}
 	}
+
+
+static async get_rates(host, ahost){
+		try{
+		  console.log("get rates for host :", host)
+		  console.log("AHOST: ", ahost)
+	      var api = await Blockchain.get_api_instance()
+		  var Obj = []
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'rate', 'id', i, -1, 1000).
+		      then(data=>{
+		      	data.rows.map(element => {
+		         	element.blockchain = process.env.BC
+		         	element.host = host
+		         	element.ahost = ahost
+		        });
+		      	Obj.push(data.rows);
+		    })
+		      // console.log("all rates: ", Obj)
+		      return Obj[0]
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+static async get_pools(host){
+		try{
+		  console.log("get pools for host :", host)
+	      var api = await Blockchain.get_api_instance()
+		  var Obj = []
+		  var more = true
+
+  		  while (more == true){ 
+		    var i = 0
+		    await api.getTableRows(true, process.env.EOSIO_CORE_ACCOUNT, host, 'pool', 'id', i, -1, 1000).
+		      then(data=>{
+		      	data.rows.map(element => {
+		         	element.blockchain = process.env.BC
+		         	element.host = host
+		        });
+		      	Obj.push(data.rows);
+		    })
+		      // console.log("all pools: ", Obj)
+		      return Obj[0]
+		  }
+		} catch (e){
+			console.error("err:", e)
+		}
+	}
+
+
+
+
+
+
+
 
 	static async get_api_instance(){		
 		return eosapi;

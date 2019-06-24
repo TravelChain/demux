@@ -29,51 +29,14 @@ async function start (state, payload, blockInfo, context) {
       // for (var key in HostObj.levels) {
       //   HostObj.levels[key] = HostObj.levels[key] / 1000000;
       // }
-
+      if (HostObj.meta){
+          let json = JSON.parse(HostObj.meta);
+        if (json.app)
+          HostObj.app = json.app
+        else HostObj.app = "undefined"
+      }
       console.log("CREATE NEW")    
-      let host = new Host(
-        {
-
-          _id: id,
-            blockchain: blockchain,
-            username: HostObj.username,
-            registered_at: HostObj.registered_at,
-            architect: HostObj.architect,
-            hoperator: HostObj.hoperator,
-            consensus_percent: HostObj.consensus_percent,
-            referral_percent: HostObj.referral_percent,
-            levels: HostObj.levels,
-            dac_mode: HostObj.dac_mode,
-            dacs: HostObj.dacs,
-
-            chosts: HostObj.chosts,
-            ahost: HostObj.ahost,
-            
-            non_active_chost: HostObj.non_active_chost,
-            need_switch: HostObj.need_switch,
-            fhosts_mode: HostObj.fhosts_mode,
-            fhosts: HostObj.fhosts,
-            title: HostObj.title,
-            purpose: HostObj.purpose,
-            total_shares: HostObj.total_shares,
-            quote_amount: HostObj.quote_amount,
-            root_token_contract: HostObj.root_token_contract,
-            root_token: HostObj.root_token,
-            symbol: HostObj.symbol,
-            precision: HostObj.precision,
-            to_pay: HostObj.to_pay,
-            payed: HostObj.payed,
-            cycle_start_at_id: HostObj.cycle_start_at_id,
-            current_pool_id: HostObj.current_pool_id,
-            current_cycle_num: HostObj.current_cycle_num,
-            current_pool_num: HostObj.current_pool_num,
-
-            parameters_setted: HostObj.parameters_setted,
-            activated: HostObj.activated,
-            priority_flag: HostObj.priority_flag,
-            meta: HostObj.meta,
-        }
-      )
+      
       await host.save()
 
     } 

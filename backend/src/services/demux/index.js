@@ -7,6 +7,7 @@ import updaters from './updaters'
 import effects from './effects'
 import mongoose from 'mongoose'
 import Blockchain from '../../utils/Blockchain'
+import CMarket from '../../utils/CMarket'
 
 const actionHandler = new ActionHandler(updaters, effects, process.env.MONGODB_URL)
 
@@ -26,6 +27,6 @@ async function fetch_markets() {
   Blockchain.get_ram_market()
 }
 
-setInterval(fetch_markets, 60000);
 
+// setInterval(fetch_markets, 60000);
 export default actionWatcher

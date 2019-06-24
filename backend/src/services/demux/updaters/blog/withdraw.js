@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import Blockchain from '../../../../utils/Blockchain.js'
-
+import CMarket from '../../../../utils/CMarket.js'
 
 async function withdraw (state, payload, blockInfo, context) {
   console.log(payload.data)
@@ -10,7 +10,7 @@ async function withdraw (state, payload, blockInfo, context) {
   var blockchain = process.env.BC
 
   try {
-    
+    await CMarket.fetch_core_market(state, blockInfo, payload.data.host)
     let balance = await Balance.findOne(
         {
           username: payload.data.username,

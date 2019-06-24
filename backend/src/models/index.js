@@ -9,6 +9,10 @@ import Power from './power.model'
 import Badge from './badge.model'
 import BadgeType from './badgetype.model'
 import Report from './report.model'
+import Rate from './rate.model'
+import Pool from './pool.model'
+import CoreMarket from './coremarket.model'
+import Spiral from './spiral.model'
 
 export {
   Market,
@@ -21,5 +25,9 @@ export {
   Power,
   Badge,
   BadgeType,
-  Report
+  Report,
+  Rate,
+  Pool,
+  CoreMarket,
+  Spiral
 }

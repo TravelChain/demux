@@ -41,6 +41,7 @@ try {
       activated: Boolean,
       priority_flag: Boolean,
       meta: String,
+      app: String
       
   })
   Host = mongoose.model('Host', HostSchema)

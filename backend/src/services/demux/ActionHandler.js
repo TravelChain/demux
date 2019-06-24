@@ -1,8 +1,8 @@
 import { AbstractActionHandler } from 'demux'
 import mongoose from 'mongoose'
-import { Post, BlockIndexState, Approve, Market, User, Balance, Host, Power, Badge, BadgeType, Report } from '../../models'
+import { Post, BlockIndexState, Approve, Market, User, Balance, Host, Power, Badge, BadgeType, Report, Pool, Rate, CoreMarket, Spiral } from '../../models'
 import io from '../../utils/io'
-
+import CMarket from '../../utils/CMarket'
 class ActionHandler extends AbstractActionHandler {
   constructor (updaters, effects, uri) {
     super(updaters, effects)
@@ -33,8 +33,9 @@ class ActionHandler extends AbstractActionHandler {
 
   async handleWithState (handle) {
     const context = { socket: io.getSocket() }
-    const state = { user:User, post: Post, approve: Approve , blockIndexState: BlockIndexState, balance: Balance, host: Host, power: Power, badge: Badge, badgetype: BadgeType, report: Report }
+    const state = { user:User, post: Post, approve: Approve , blockIndexState: BlockIndexState, balance: Balance, host: Host, power: Power, badge: Badge, badgetype: BadgeType, report: Report, pool: Pool, rate: Rate, coremarket: CoreMarket, spiral: Spiral }
     try {
+
       await handle(state, context)
     } catch (err) {
       console.error(err)
@@ -44,6 +45,7 @@ class ActionHandler extends AbstractActionHandler {
   async updateIndexState (state, block, isReplay) {
     const { blockInfo } = block
     try {
+      
       await state.blockIndexState.update({blockchain: process.env.BC}, {
         blockNumber: blockInfo.blockNumber,
         blockHash: blockInfo.blockHash,

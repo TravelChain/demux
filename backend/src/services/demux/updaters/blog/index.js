@@ -17,9 +17,12 @@ import giftbadge from './giftbadge'
 import setreport from './setreport'
 import editreport from './editreport'
 import approver from './approver'
+import refreshst from './refreshst'
 
 const account = process.env.EOSIO_CONTRACT_ACCOUNT
 const core_account = process.env.EOSIO_CORE_ACCOUNT
+const gateway1_account = process.env.GATEWAY1
+
 export default [
   {
     actionType: `${account}::post`, // account::action name
@@ -58,6 +61,10 @@ export default [
     updater: transfer
   },
   {
+    actionType: `faketoken::transfer`,
+    updater: transfer
+  },
+  {
     actionType: `${core_account}::sellshares`,
     updater: sellshares
   },
@@ -77,6 +84,15 @@ export default [
     actionType: `${core_account}::giftbadge`,
     updater: giftbadge
   },
+  {
+    actionType: `${core_account}::refreshst`,
+    updater: refreshst
+  },
+  {
+    actionType: `${core_account}::priorenter`,
+    updater: refreshst
+  },
+  
   // {
   //   actionType: `${core_account}::setreport`,
   //   updater: setreport
