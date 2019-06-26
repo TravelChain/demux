@@ -28,5 +28,5 @@ async function fetch_markets() {
 }
 
 
-// setInterval(fetch_markets, 60000);
+setInterval(fetch_markets, 60000);
 export default actionWatcher
