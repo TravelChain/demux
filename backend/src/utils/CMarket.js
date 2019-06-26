@@ -15,10 +15,17 @@ export class CMarket {
       var Host_bc = await Blockchain.get_host(host)
 
       if (Host_bc.meta){
-     	let json = JSON.parse(Host_bc.meta);
-		if (json.app)
-			Host_bc.app = json.app
-		else Host_bc.app = "undefined"
+      	try {
+	    	let json = JSON.parse(Host_bc.meta);
+			
+			if (json.app)
+				Host_bc.app = json.app
+			else Host_bc.app = "undefined"
+
+	    } catch (e) {
+	        Host_bc.app = "undefined"
+	    }
+     	
 		}
 	console.log("APP", Host_bc.app)
 
