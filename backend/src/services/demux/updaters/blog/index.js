@@ -65,6 +65,10 @@ export default [
     updater: transfer
   },
   {
+    actionType: `btc.gateway::transfer`,
+    updater: transfer
+  },
+  {
     actionType: `${core_account}::sellshares`,
     updater: sellshares
   },
