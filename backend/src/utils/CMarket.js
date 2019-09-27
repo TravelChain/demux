@@ -106,7 +106,7 @@ export class CMarket {
 
      if (!Spiral_obj){
      	let Spiral_bc = await Blockchain.get_spiral(host, Host_bc.ahost)
-     	Spiral_bc._id = await 
+     	// Spiral_bc._id = await 
      	console.log("Spiral_BC", Spiral_bc)
      	let spiral = new Spiral({
      		_id: new mongoose.mongo.ObjectId(),

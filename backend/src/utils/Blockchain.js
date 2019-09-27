@@ -182,6 +182,8 @@ export class Blockchain {
 
 
 	static async get_ram_market(){
+		var blockchain = process.env.blockchain
+
 		var mar_1m = await Market.findOne({is1min:true}).sort({date: -1}).exec();
 		
 		var mar_5m = await Market.findOne({is5min:true}).sort({date: -1}).exec();
@@ -288,6 +290,7 @@ export class Blockchain {
 					      base: basebal,
 					      quote: quotebal,
 					      basecurr: "RAM",
+					      blockchain: blockchain,
 					      quotecurr: process.env.CORE_SYMBOL,
 					      cost: cost,
 					      is1min: true,

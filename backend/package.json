@@ -9,14 +9,14 @@
     "lint": "standard | snazzy"
   },
   "dependencies": {
-    "eosjs-api": "7.0.4",
     "cors": "^2.8.4",
     "demux": "^2.0.0",
     "demux-eos": "^2.0.0",
     "dotenv": "^6.0.0",
+    "eosjs-api": "7.0.4",
     "express": "^4.16.3",
     "mongodb": "^3.1.1",
-    "mongoose": "^5.2.3",
+    "mongoose": "^5.6.4",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {
